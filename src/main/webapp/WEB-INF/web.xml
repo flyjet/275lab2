@@ -6,20 +6,26 @@
 
     <display-name>MVC Web App</display-name>
 
+    <!--Register the DispatcherServlet as a Servlet called mvc-dispatcher -->
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
+    <!--Map this servlet to handle incoming requests starting with "/" -->
     <servlet-mapping>
         <servlet-name>mvc-dispatcher</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>
     </context-param>
+
 
     <listener>
         <listener-class>
