@@ -27,6 +27,7 @@ public class ProfileDAOImpl implements ProfileDAO {
     //call rollback()
     public List<Profile> getAllProfiles(){
         List<Profile> profiles = manager.createQuery("Select a From Profile a", Profile.class).getResultList();
+
         return profiles;
     }
 

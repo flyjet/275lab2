@@ -18,6 +18,8 @@ public class ProfileManagerImpl implements ProfileManager {
     ProfileDAO dao;
 
     public List<Profile> getAllProfiles(){
-        return dao.getAllProfiles();
+
+        List<Profile> resultSet = dao.getAllProfiles();
+        return resultSet;
     }
 }
