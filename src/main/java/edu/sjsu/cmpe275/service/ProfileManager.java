@@ -9,5 +9,8 @@ import java.util.List;
  */
 public interface ProfileManager {
 
-    public List<Profile> getAllProfiles();
+    List<Profile> getAllProfiles();
+    Profile getProfileById(String Id);
+    void deleteById(String Id);
+    void addProfile(Profile p);
 }

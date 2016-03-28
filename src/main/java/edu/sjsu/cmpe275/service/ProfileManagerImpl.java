@@ -22,4 +22,16 @@ public class ProfileManagerImpl implements ProfileManager {
         List<Profile> resultSet = dao.getAllProfiles();
         return resultSet;
     }
+
+    public Profile getProfileById(String Id){
+        return dao.getProfileById(Id);
+    }
+
+    public void deleteById(String Id){
+        dao.deleteById(Id);
+    }
+
+    public void addProfile(Profile p){
+        dao.addProfile(p);
+    }
 }

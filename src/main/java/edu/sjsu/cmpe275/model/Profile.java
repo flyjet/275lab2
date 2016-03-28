@@ -1,5 +1,6 @@
 package edu.sjsu.cmpe275.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,11 +10,13 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "Profile")
+@Table(name = "profile")
 public class Profile {
 
     @Id
+    @Column(name = "id")
     private String id;
+
     private String firstname;
     private String lastname;
     private String email;

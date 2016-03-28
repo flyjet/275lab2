@@ -31,5 +31,19 @@ public class ProfileDAOImpl implements ProfileDAO {
         return profiles;
     }
 
+    public Profile getProfileById(String Id){
+        return manager.find(Profile.class, Id);
+
+    }
+
+    public void deleteById(String Id){
+        Profile profile = manager.find(Profile.class, Id);
+        manager.remove(profile);
+    }
+
+    public void addProfile(Profile p){
+        manager.persist(p);
+    }
+
 }
 

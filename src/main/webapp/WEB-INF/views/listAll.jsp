@@ -7,10 +7,19 @@
     <title>Hello World from Qi</title>
 </head>
 <body>
-<h1>All Persons</h1>
-<c:forEach var="p" items="${profiles}">
-    Id: ${p.id} FirstName: ${p.firstname}<br/>
-</c:forEach>
+    <h1>All Persons</h1>
+    <c:forEach var="p" items="${profiles}">
+        Id: ${p.id} FirstName: ${p.firstname}<br/>
+    </c:forEach>
+
+    <h1>Add New</h1>
+    <form method="post" action="addProfile">
+        Id:<input type="text" name ="id"/>
+        FirstName: <input type="text" name="firstname"/>
+        LastName: <input type="text" name="lastname"/>
+
+        <button>Add</button>
+    </form>
 
 </body>
 </html>

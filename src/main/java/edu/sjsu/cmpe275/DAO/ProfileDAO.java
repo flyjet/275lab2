@@ -8,6 +8,9 @@ import java.util.List;
  * Created by qi on 3/27/16.
  */
 public interface ProfileDAO {
-    public List<Profile> getAllProfiles();
+    List<Profile> getAllProfiles();
+    Profile getProfileById(String Id);
+    void deleteById(String Id);
+    void addProfile(Profile p);
 
 }
