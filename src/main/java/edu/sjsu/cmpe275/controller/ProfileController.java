@@ -16,37 +16,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-
-/*
-
-@Controller
-public class IndexController {
-    @RequestMapping(value = "/")
-    public ModelAndView index() {
-        ModelAndView mav = new ModelAndView("/index");
-
-        String msg = "Running IndexController.index() method";
-
-        mav.addObject("msg", msg);
-        return mav;
-    }
-} */
 
 @Controller
 @RequestMapping("/Profile")
 public class ProfileController {
     @Autowired
-    private ProfileManager manger;
+    private ProfileManager manager;
 
     //Method will be called in initial page load at GET /Profile
     @RequestMapping(method = RequestMethod.GET)
     public String listAll (Model model){
 
-        List<Profile> resultSet = manger.getAllProfiles();
+        List<Profile> resultSet = manager.getAllProfiles();
+
         /*
         for( Profile p: resultSet){
             System.out.println("--- Profile--");
@@ -60,10 +44,11 @@ public class ProfileController {
     @RequestMapping(value ="/{userId}",method = RequestMethod.GET)
     public String listById (@PathVariable("userId") String Id,  Model model){
 
-        Profile result = manger.getProfileById(Id);
+        Profile result = manager.getProfileById(Id);
 
         if(result == null){
-            //TODO
+            model.addAttribute("ErrorId", Id);
+            return "404";
         }
         model.addAttribute("profile", result);
 
@@ -81,7 +66,23 @@ public class ProfileController {
         if(result.hasErrors()){
             //TODO error message
         }
-        manger.addProfile(profile);
+        manager.addProfile(profile);
+
+        //Mark Session Complete and redirect to URL so that page refresh do not re-submit the form
+        status.setComplete();
+        return "listById";
+    }
+
+    //Method will be called on submitting add profile form POST /Profile
+    @RequestMapping(value ="/*",method = RequestMethod.POST )
+    public String updateProfile( @ModelAttribute("profile") Profile profile,
+                             BindingResult result, SessionStatus status){
+
+        //TODO Validation the input data
+        if(result.hasErrors()){
+            //TODO error message
+        }
+        manager.addProfile(profile);
 
         //Mark Session Complete and redirect to URL so that page refresh do not re-submit the form
         status.setComplete();
@@ -94,7 +95,7 @@ public class ProfileController {
 
         //TODO Validation the input data
 
-        manger.deleteById(Id);
+        manager.deleteById(Id);
         return "listAll";
     }
 

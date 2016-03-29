@@ -16,21 +16,26 @@
 <body>
 <h1>Profile Detail</h1>
 
-    Id: ${profile.id} <br/>
-    FirstName: ${profile.firstname} <br/>
-    LastName: ${profile.lastname} <br/>
-    Email: ${profile.email} <br/>
-    Address: ${profile.address} <br/>
-    Organization:${profile.organization} <br/>
-    aboutMyself:${profile.aboutMyself} <br/>
+    <form method="POST" modelAttribute="profile">
+        Id:<input type="text" name ="id" value="${profile.id}" readonly/> <br/><br/>
+        FirstName: <input type="text" name="firstname" value="${profile.firstname}"/> <br/><br/>
+        LastName: <input type="text" name="lastname" value="${profile.lastname}"/> <br/><br/>
+        Email: <input type="text" name="email" value="${profile.email} "/> <br/><br/>
+        Address: <input type="text" name="address" value="${profile.address}"/><br/><br/>
+        Organization: <input type="text" name="organization" value="${profile.organization}"/><br/><br/>
+        AboutMyself <input type="text" name="aboutMyself" value="${profile.aboutMyself}"/><br/>
+
+        <br/>
+        <button>Update</button>
+    </form>
 
     <br/>
-    <button>Update</button>
-
-    <br/>
     <br/>
 
-    <button>Delete</button>
+    <form method="DELETE">
+        <button>Delete</button>
+    </form>
+
 
 </body>
 </html>
