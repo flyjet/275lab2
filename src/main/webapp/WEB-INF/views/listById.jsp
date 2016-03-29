@@ -24,5 +24,13 @@
     Organization:${profile.organization} <br/>
     aboutMyself:${profile.aboutMyself} <br/>
 
+    <br/>
+    <button>Update</button>
+
+    <br/>
+    <br/>
+
+    <button>Delete</button>
+
 </body>
 </html>

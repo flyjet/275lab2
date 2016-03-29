@@ -10,11 +10,14 @@ import edu.sjsu.cmpe275.service.ProfileManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -53,7 +56,7 @@ public class ProfileController {
         return "listAll";
     }
 
-    //Method will be called in initial page load at GET /Profile
+    //Method will be called page load at GET /Profile/userId
     @RequestMapping(value ="/{userId}",method = RequestMethod.GET)
     public String listById (@PathVariable("userId") String Id,  Model model){
 
@@ -63,15 +66,38 @@ public class ProfileController {
             //TODO
         }
         model.addAttribute("profile", result);
+
         return "listById";
     }
 
 
+    //Method will be called on submitting add profile form POST /Profile
+    @RequestMapping(method = RequestMethod.POST )
+    public String addProfile(@ModelAttribute("profile") Profile profile,
+                             BindingResult result, SessionStatus status){
 
-    @RequestMapping(value = "/addPerson", method = RequestMethod.POST )
-    public String addProfile(@ModelAttribute Profile profile){
+        //TODO Validation the input data
+
+        if(result.hasErrors()){
+            //TODO error message
+        }
         manger.addProfile(profile);
-        return "redirect:/";
+
+        //Mark Session Complete and redirect to URL so that page refresh do not re-submit the form
+        status.setComplete();
+        return "listById";
     }
+
+    //Method will be called on delete /Profile/UserId
+    @RequestMapping(value ="/{userId}", method = RequestMethod.DELETE)
+    public String deleteProfile(@PathVariable("userId") String Id){
+
+        //TODO Validation the input data
+
+        manger.deleteById(Id);
+        return "listAll";
+    }
+
+
 
 }

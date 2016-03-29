@@ -7,19 +7,26 @@
     <title>Hello World from Qi</title>
 </head>
 <body>
-    <h1>All Persons</h1>
+
+    <h1>Create New Profile</h1>
+    <form method="POST" modelAttribute="profile">
+        Id:<input type="text" name ="id"/> <br/><br/>
+        FirstName: <input type="text" name="firstname"/> <br/><br/>
+        LastName: <input type="text" name="lastname"/> <br/><br/>
+        Email: <input type="text" name="email"/> <br/><br/>
+        Address: <input type="text" name="address"/><br/><br/>
+        Organization: <input type="text" name="organization"/><br/><br/>
+        AboutMyself <input type="text" name="aboutMyself"/><br/>
+
+        <br/>
+        <button>Create</button>
+    </form>
+
+
+    <h1>All Profiles</h1>
     <c:forEach var="p" items="${profiles}">
         Id: ${p.id} FirstName: ${p.firstname}<br/>
     </c:forEach>
-
-    <h1>Add New</h1>
-    <form method="post" action="addProfile">
-        Id:<input type="text" name ="id"/>
-        FirstName: <input type="text" name="firstname"/>
-        LastName: <input type="text" name="lastname"/>
-
-        <button>Add</button>
-    </form>
 
 </body>
 </html>

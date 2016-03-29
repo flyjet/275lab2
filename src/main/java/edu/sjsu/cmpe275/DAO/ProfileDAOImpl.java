@@ -42,7 +42,9 @@ public class ProfileDAOImpl implements ProfileDAO {
     }
 
     public void addProfile(Profile p){
+
         manager.persist(p);
+
     }
 
 }
