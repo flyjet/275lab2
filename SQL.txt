@@ -1,0 +1,32 @@
+
+mysql.server start
+
+mysql -uroot -p
+
+drop database if exists cmpe275_lab2;
+
+create database cmpe275_lab2;
+
+show databases;
+
+use cmpe275_lab2;
+
+create table Profile (id varchar(10),   firstname varchar(12), 
+    lastname varchar(12),
+    email varchar(20),
+    address varchar(60),
+    organization varchar(10),
+    aboutMyself varchar(600), 
+    primary key(id));
+
+
+
+show fields from Profile;
+
+insert into Profile values ('001', 'Ray','Liu','bugfree@gmail.com', 'San Jose', 'SJSU','CMPE student');
+
+insert into Profile values ('002', 'Feng','Yuan','fyuan@gmail.com', 'San Jose', 'SJSU','CMPE student');
+
+
+select * from Profile;   
+
